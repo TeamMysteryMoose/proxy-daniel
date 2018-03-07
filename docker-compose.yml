@@ -1,0 +1,28 @@
+version: "2"
+services:
+  mongo:
+    container_name: mongo
+    image: mongo:3.6.2
+    volumes:
+      - /data/db
+    ports:
+      - "27017:27017"
+
+  reviews:
+    container_name: reviews
+    restart: always
+    build: /Users/dmp/hr/immersive/fec/reviews
+    ports:
+      - "8000"
+    links:
+      - mongo
+    command: npm start
+
+  proxy:
+    container_name: proxy
+    restart: always
+    build: /Users/dmp/hr/immersive/fec/proxy-daniel
+    ports:
+      - "80:80"
+    links:
+      - reviews:reviews
