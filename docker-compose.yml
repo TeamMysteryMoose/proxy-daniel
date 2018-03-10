@@ -6,12 +6,31 @@ services:
     volumes:
       - /data/db
     ports:
-      - "27017:27017"
+      - "27017"
 
+  #reviews:
+    #container_name: reviews
+    #restart: always
+    #build: /Users/dmp/hr/immersive/fec/reviews
+    #ports:
+      #- "8001"
+    #links:
+      #- mongo
+    #command: npm start
   reviews:
     container_name: reviews
     restart: always
-    build: /Users/dmp/hr/immersive/fec/reviews
+    image: dpaikoff/hrsf89_fec:reviews1
+    ports:
+      - "8001"
+    links:
+      - mongo
+    command: npm start
+
+  menus:
+    container_name: menus
+    restart: always
+    image: jqywang/opentable-menu:menu1
     ports:
       - "8000"
     links:

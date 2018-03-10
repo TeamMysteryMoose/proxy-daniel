@@ -5,12 +5,16 @@
   </head>
   <body>
 
-    <div id="app"></div>
+    <div id="menu"></div>
+    <div id="reviews"></div>
     <script src="/lib/react.development.js"></script>
     <script src="/lib/react-dom.development.js"></script>
     <script src="reviews/bundle.js"></script>
+    <script src="menus/bundle.js"></script>
     <script>
-      ReactDOM.render(React.createElement(App, {restaurantId: 1}), document.getElementById('app'));
+      const restaurantId = window.location.pathname.slice(3);
+      ReactDOM.render(React.createElement(MenuApp, {restaurant: restaurantId}), document.getElementById('menu'));
+      ReactDOM.render(React.createElement(ReviewApp, {restaurantId: restaurantId}), document.getElementById('reviews'));
     </script>
   </body>
 </html>
