@@ -37,10 +37,20 @@ services:
       - mongo
     command: npm start
 
+  photos:
+    container_name: photos
+    restart: always
+    image: leesuehee/opentable_photos:photo1
+    ports:
+      - "8002"
+    links:
+      - mongo
+    command: npm start
+
   proxy:
     container_name: proxy
     restart: always
-    build: /Users/dmp/hr/immersive/fec/proxy-daniel
+    build: .
     ports:
       - "80:80"
     links:
